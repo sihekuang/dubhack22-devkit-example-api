@@ -1,0 +1,26 @@
+#org: <enter your org id here>
+#app: <enter your serverless app here>
+service: aws-node-http-api-project
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /{id}
+          method: get
+  post:
+    handler: handler.post
+    events:
+      - httpApi:
+          path: /{id}
+          method: post
+
+
+plugins:
+  - serverless-offline
